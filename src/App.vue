@@ -3,6 +3,11 @@
 
 <template>
   <!-- <router-view /> -->
+  <h2 text-center>主应用头部</h2>
+  <div flex>
+    <router-link to="/app-vue/" btn ml-2 mr-2>vue3</router-link>
+    <router-link to="/app-vue2/" btn mx-1>vue2</router-link>
+  </div>
   <div id="app-vue"></div>
 </template>
 

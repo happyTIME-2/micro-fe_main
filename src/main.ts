@@ -6,14 +6,18 @@ import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import 'uno.css'
 
-createApp(App).use(router).mount('#container')
-
 const apps:Apps.App[] = [
   {
     name: 'app vue',
     entry: '//micro.local/',
     container: '#app-vue',
     activeRule: '/app-vue',
+  },
+  {
+    name: 'app vue2',
+    entry: '//micro2.local/',
+    container: '#app-vue',
+    activeRule: '/app-vue2',
   }
 ]
 
@@ -21,4 +25,6 @@ registerMicroApps(apps);
 
 start();
 
+console.log(router)
 
+createApp(App).use(router).mount('#container')
