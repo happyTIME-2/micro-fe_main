@@ -4,7 +4,17 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Footer: typeof import('./components/Footer.vue')['default']
+    Header: typeof import('./components/Header.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    Layout: typeof import('./components/Layout.vue')['default']
+    TContent: typeof import('tdesign-vue-next')['Content']
+    TFooter: typeof import('tdesign-vue-next')['Footer']
+    THeader: typeof import('tdesign-vue-next')['Header']
+    THeadMenu: typeof import('tdesign-vue-next')['HeadMenu']
+    TIcon: typeof import('tdesign-vue-next')['Icon']
+    TLayout: typeof import('tdesign-vue-next')['Layout']
+    TMenuItem: typeof import('tdesign-vue-next')['MenuItem']
   }
 }
 

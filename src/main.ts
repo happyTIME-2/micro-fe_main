@@ -1,7 +1,9 @@
 import App from './App.vue'
 import router from './router'
 import { registerMicroApps, start } from 'qiankun'
+import TDesign from 'tdesign-vue-next';
 
+import 'tdesign-vue-next/es/style/index.css';
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import 'uno.css'
@@ -27,4 +29,4 @@ start();
 
 console.log(router)
 
-createApp(App).use(router).mount('#container')
+createApp(App).use(router).use(TDesign).mount('#container')
