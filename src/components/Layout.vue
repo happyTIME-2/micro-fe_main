@@ -1,5 +1,5 @@
 <template>
-  <t-layout p-xl>
+  <t-layout px-xl>
     <t-header>
       <Header />
     </t-header>
