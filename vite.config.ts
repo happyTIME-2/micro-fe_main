@@ -1,4 +1,4 @@
-import path from 'path'
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
@@ -6,13 +6,14 @@ import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
 import { TDesignResolver } from 'unplugin-vue-components/resolvers';
+import { chunkSplitPlugin } from 'vite-plugin-chunk-split';
 
 
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': resolve(__dirname, 'src'),
     }
   },
   server: {
@@ -21,8 +22,23 @@ export default defineConfig({
       'Access-Control-Allow-Origin': '*',
     }
   },
+  build: {
+    manifest: true,
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        }
+      }
+    }
+  },
   plugins: [
     vue(),
+
+    chunkSplitPlugin(),
 
     AutoImport({
       imports: [
@@ -64,6 +80,7 @@ export default defineConfig({
       'vue-router',
       '@vueuse/core',
       '@vueuse/head',
+      'tdesign-vue-next',
     ],
     exclude: [
       'vue-demi',
