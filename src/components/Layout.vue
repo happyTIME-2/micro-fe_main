@@ -14,11 +14,14 @@
 </template>
 
 <script lang="ts" setup>
+import api from '@/api';
 const router = useRouter();
 
 const isHome = computed(() => {
   return router.currentRoute.value.path === '/';
 });
+
+api();
 </script>
 
 <style scoped lang="scss">
