@@ -25,6 +25,11 @@ export default defineConfig({
   build: {
     manifest: true,
     cssCodeSplit: true,
+    terserOptions: {
+      compress: {
+        drop_console: true
+      }
+    },
     rollupOptions: {
       output: {
         manualChunks(id) {
