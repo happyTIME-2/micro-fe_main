@@ -1,3 +1,9 @@
+import { Request } from './request';
+
+Request.init();
+
+
+
 const modules = import.meta.glob('./*.ts');
 
 const modulesArray = Object.keys(modules).map(key => modules[key]);
