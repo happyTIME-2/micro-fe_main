@@ -10,7 +10,7 @@ export class Request {
 
   public static init() {
     this.axiosInstance = axios.create({
-      baseURL: '/api',
+      baseURL: './',
       timeout: 10000,
     });
 
@@ -23,12 +23,11 @@ export class Request {
     this.axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
       const token = localStorage.getItem('ACCESS_TOKEN');
       if (token) {
+        // eslint-disable-next-line no-param-reassign
         config.headers!.Authorization = `Bearer ${token}`;
       }
       return config;
-    }, (error: AxiosError) => {
-      return Promise.reject(error);
-    });
+    }, (error: AxiosError) => Promise.reject(error));
 
     this.axiosInstance.interceptors.response.use(
       (response: AxiosResponse) => {
@@ -48,7 +47,7 @@ export class Request {
           console.log('网络连接异常,请稍后再试!');
         }
         return Promise.reject(response?.data);
-      }
+      },
     );
   }
 
@@ -56,11 +55,12 @@ export class Request {
     // 状态码判断
     switch (res.status) {
       case 401:
+        console.log('401哦');
         break;
       case 403:
         break;
       case 404:
-        console.log();('请求的资源不存在');
+        console.log('请求的资源不存在');
         break;
       default:
         // 错误信息判断

@@ -5,7 +5,9 @@
     </t-header>
     <t-content px-2xl border-t-1 border-pink-200>
       <div id="app-vue" py-xl />
-      <div v-show="isHome" text-center>this is main app content</div>
+      <div v-show="isHome" text-center>
+        <router-view />
+      </div>
     </t-content>
     <t-footer>
       <Footer />
@@ -17,9 +19,7 @@
 import api from '@/api';
 const router = useRouter();
 
-const isHome = computed(() => {
-  return router.currentRoute.value.path === '/';
-});
+const isHome = computed(() => !['/app-vue2/', '/app-vue/'].includes(router.currentRoute.value.path))
 
 api();
 </script>
