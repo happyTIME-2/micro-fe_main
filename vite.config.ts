@@ -30,6 +30,7 @@ export default defineConfig(({ mode }) => {
       manifest: true,
       minify: 'terser',
       cssCodeSplit: true,
+      target:['edge90','chrome90','firefox90','safari15'],
       terserOptions: {
         compress: {
           drop_console: true,
