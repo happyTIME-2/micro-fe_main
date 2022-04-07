@@ -1,13 +1,23 @@
 <template>
-  <t-layout px-xl>
+  <div v-if="isHome">
+    <ul flex>
+      <li v-for="(item, index) in apps" :key="index" m-xl>
+        <router-link :to="item.activeRule" btn>
+          {{item.name}}
+          <i i-carbon-arrow-right inline-block align-middle></i>
+        </router-link>
+      </li>
+    </ul>
+  </div>
+  <t-layout v-else px-xl>
     <t-header>
-      <Header />
+      <Header :menus="apps"/>
     </t-header>
     <t-content px-2xl border-t-1 border-pink-200>
       <div id="app-vue" py-xl />
-      <div v-show="isHome" text-center>
+      <!-- <div v-show="isHome" text-center>
         <router-view />
-      </div>
+      </div> -->
     </t-content>
     <t-footer>
       <Footer />
@@ -17,11 +27,23 @@
 
 <script lang="ts" setup>
 import api from '@/api';
+
+const props = defineProps<{
+  apps: Apps.App[]
+}>();
+
+const paths = computed(() => {
+  if (props.apps.length ===0) return [];
+  return props.apps.map(item => item.activeRule);
+});
+
 const router = useRouter();
 
-const isHome = computed(() => !['/app-vue2/', '/app-vue/'].includes(router.currentRoute.value.path))
+const isHome = computed(() => paths.value.length !== 0 && !paths.value.includes(router.currentRoute.value.path))
 
 api();
+
+
 </script>
 
 <style scoped lang="scss">

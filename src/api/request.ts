@@ -8,9 +8,9 @@ interface MyAxiosInstance extends AxiosInstance {
 export class Request {
   public static axiosInstance: MyAxiosInstance;
 
-  public static init() {
+  public static init(baseURL: string) {
     this.axiosInstance = axios.create({
-      baseURL: './',
+      baseURL,
       timeout: 10000,
     });
 
@@ -18,7 +18,7 @@ export class Request {
   }
 
   public static initInterceptors() {
-    this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+    // this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
     this.axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
       const token = localStorage.getItem('ACCESS_TOKEN');
@@ -31,11 +31,12 @@ export class Request {
 
     this.axiosInstance.interceptors.response.use(
       (response: AxiosResponse) => {
-        const { data: { code, message, data } } = response;
-        if (response.status !== 200 || code !== 0) {
-          Request.errorHandle(response, message);
-        }
-        return data;
+        // const { data: { code, message, data } } = response;
+        // if (response.status !== 200 || code !== 0) {
+        //   Request.errorHandle(response, message);
+        // }
+        
+        return response;
       },
       // 请求失败
       (error: AxiosError): Promise<any> => {
@@ -68,3 +69,5 @@ export class Request {
     }
   }
 }
+
+Request.init('');
