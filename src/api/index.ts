@@ -1,6 +1,6 @@
 import { Request } from './request';
 
-Request.init();
+Request.init('');
 
 
 
