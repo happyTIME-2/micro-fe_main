@@ -3,13 +3,10 @@ import { useAxios } from '@vueuse/integrations/useAxios'
 import { Request } from '@/api/request';
 //import axios from 'axios';
 
-Request.init();
 const instance = Request.axiosInstance;
 
-console.log(instance);
-
-const { data, isFinished, execute } = useAxios('v1/user', instance)
-console.log(data);
+const { data, isFinished, execute } = await useAxios('v1/user', instance)
+console.log(data.value);
 
 </script>
 
@@ -31,7 +28,7 @@ console.log(data);
     <div>
       <p>isFinished: {{isFinished}}</p>
       <div v-if="isFinished">
-        <p>status: {{data.status}}</p>
+        <!-- <p>status: {{data.status}}</p> -->
         <ul text-left>
           <li v-for="(item, index) in data.data.roles" :key="index" flex>
           {{item}}

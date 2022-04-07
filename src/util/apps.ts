@@ -1,18 +1,29 @@
 import actions from "@/stores/actions";
 import { globalState } from "@/stores/actions";
+import { useAxios } from '@vueuse/integrations/useAxios'
+// import axios from "axios";
+import { Request } from "@/api/request";
 
-const microApps = [
-  {
-    name: 'app vue',
-    entry: '//micro.local/',
-    activeRule: '/app-vue',
-  },
-  {
-    name: 'app vue2',
-    entry: '//micro2.local/',
-    activeRule: '/app-vue2',
-  }
-];
+console.log(Request.axiosInstance);
+
+const instance = Request.axiosInstance;
+
+const { data, isFinished } = await useAxios('//micro.dev/v1/apps', instance, {immediate: true});
+
+const microApps: Apps.App[] = isFinished ? data.value : [];
+
+// const microApps = [
+//   {
+//     name: 'app vue',
+//     entry: '//micro.local/',
+//     activeRule: '/app-vue',
+//   },
+//   {
+//     name: 'app vue2',
+//     entry: '//micro2.local/',
+//     activeRule: '/app-vue2',
+//   }
+// ];
 
 const apps = microApps.map(app => {
   return {
@@ -27,4 +38,7 @@ const apps = microApps.map(app => {
   }
 })
 
-export default apps;
+export { 
+  isFinished,
+  apps
+};

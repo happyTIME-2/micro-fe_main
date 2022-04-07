@@ -4,7 +4,7 @@ import { createPinia } from 'pinia';
 import { registerMicroApps, start } from 'qiankun';
 import TDesign from 'tdesign-vue-next';
 
-import apps from '@/util/apps';
+import { apps } from '@/util/apps';
 
 // import 'tdesign-vue-next/es/style/index.css';
 import '@unocss/reset/tailwind.css';
