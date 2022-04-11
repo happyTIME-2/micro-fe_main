@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => {
       target:['edge90','chrome90','firefox90','safari15'],
       terserOptions: {
         compress: {
-          drop_console: true,
+          drop_console: false,
         },
       },
       rollupOptions: {
