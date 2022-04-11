@@ -28,24 +28,17 @@
 <script lang="ts" setup>
 import api from '@/api';
 
-const props = defineProps<{
+defineProps<{
   apps: Apps.App[]
 }>();
-
-const paths = computed(() => {
-  if (props.apps.length ===0) return [];
-  return props.apps.map(item => item.activeRule);
-});
 
 const router = useRouter();
 
 const isHome = ref(false);
 
-// const isHome = computed(() => paths.value.length !== 0 && !paths.value.includes(router.currentRoute.value.path))
-
 watch(() => router.currentRoute.value.path, (val) => {
   console.log(val);
-  if (!paths.value.includes(val)) isHome.value = true;
+  if (val.includes('/micro-fe/')) isHome.value = true;
   else isHome.value = false;
 
   console.log(isHome.value);
