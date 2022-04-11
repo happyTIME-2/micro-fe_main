@@ -18,7 +18,7 @@
     <template #operations>
       <a href="javascript:;"><t-icon class="t-menu__operations-icon" name="search" /></a>
       <a href="javascript:;"><t-icon class="t-menu__operations-icon" name="notification-filled" /></a>
-      <a href="javascript:;" @click="go('/')"><t-icon class="t-menu__operations-icon" name="home" /></a>
+      <a href="javascript:;" @click="go('/micro-fe/')"><t-icon class="t-menu__operations-icon" name="home" /></a>
     </template>
   </t-head-menu>
 </template>
