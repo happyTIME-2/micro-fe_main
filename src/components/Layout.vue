@@ -39,7 +39,14 @@ const paths = computed(() => {
 
 const router = useRouter();
 
-const isHome = computed(() => paths.value.length !== 0 && !paths.value.includes(router.currentRoute.value.path))
+const isHome = ref(false);
+
+// const isHome = computed(() => paths.value.length !== 0 && !paths.value.includes(router.currentRoute.value.path))
+
+watch(() => router.currentRoute.value.path, (val) => {
+  if (!paths.value.includes(val)) isHome.value = true;
+  else isHome.value = false;
+});
 
 api();
 
