@@ -8,7 +8,7 @@ console.log(Request.axiosInstance);
 
 const instance = Request.axiosInstance;
 
-const { data, isFinished } = await useAxios('//api.cjit.woa.com/mock/8248/v1/apps', instance, {immediate: true});
+const { data, isFinished } = await useAxios('//cjit.woa.com/mock/8248/v1/apps', instance, {immediate: true});
 
 const microApps: Apps.App[] = isFinished ? data.value : [];
 
