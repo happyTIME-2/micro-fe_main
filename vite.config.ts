@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
         '@': resolve(__dirname, 'src'),
       },
     },
-    base: mode === 'production' ? '/micro-fe/' : './',
+    base: mode === 'production' ? '//test-static.cdn.tencent.com//micro-fe/' : './',
     server: {
       cors: true,
       headers: {
